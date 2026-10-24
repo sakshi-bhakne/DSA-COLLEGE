@@ -1,0 +1,9 @@
+A queue is linear structure which follows a particular order in which the operation are performed . the FIFO. A good example 
+
+
+1.Enqueue : insert an item to the queue
+2.Dequeue : remove an item from the queue
+front and rear (last) 
+
+find out index value:
+(rear + 1)%size
