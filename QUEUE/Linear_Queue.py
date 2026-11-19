@@ -27,6 +27,9 @@ class LQueue:
         while temp:
             print(temp.data,end = "->")
             temp = temp.next
+        print()
+    
+
 
 
 que = LQueue()
