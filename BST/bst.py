@@ -1,5 +1,4 @@
 #BST using Linked List
-#BST using Linked List
 class Node:
     def __init__(self, value):
         self.left=None
@@ -64,7 +63,39 @@ class BST:
             temp=temp.right
         print("\nMax: ", temp.data)
 
-    
+    def delete_node(self,rt,val):
+        if rt is None:
+            return rt
+        if val <rt.data:
+            rt.left = self.delete_node(rt.left,val)
+        elif val > rt.data:
+            rt.right = self.delete_node(rt.right,val)
+        else:
+            if rt.left is None:#node with right chile only
+                return rt.right
+            if rt.right is None:#node with left chile pnly
+                return rt.left
+            #node has both left and right children
+            succ = self.get_successor(rt)
+            rt.data = succ.data
+            rt.right = self.delete_node(rt.right,succ.data)
+        return rt
+    def get_successor(self,temp):
+        temp = temp.right
+        while temp.left is not None :
+            temp = temp.left
+        return temp
+    def search(self,key):#To search a perticular value.
+        temp = self.root
+        while temp:
+            if temp.data  == key:
+                return True
+            elif key<temp.data:
+                temp = temp.left
+            else:
+                temp = temp.right
+        return False
+
 
 b1=BST()
 b1.insert(Node(100))
@@ -76,9 +107,16 @@ b1.insert(Node(500))
 b1.insert(Node(34))
 print("\nInorder: ")
 b1.inorder(b1.root)
-print("\ntotal non of left nodes: ",b1.cnt)
-print("\nPreorder: ")
-b1.preorder(b1.root)
-print("\nPostorder: ")
-b1.postorder(b1.root)
-b1.findminmax(b1.root)
+# print("\ntotal non of left nodes: ",b1.cnt)
+# print("\nPreorder: ")
+# b1.preorder(b1.root)
+# print("\nPostorder: ")
+# b1.postorder(b1.root)
+# b1.findminmax(b1.root)
+b1.delete_node(b1.root,10)
+print("\n after deletion: ",end = " ")
+b1.inorder(b1.root)
+if b1.search(4):
+    print("\n Found the node")
+else:
+    print("\n Not found")
